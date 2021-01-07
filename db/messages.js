@@ -20,13 +20,11 @@ function getAll() {
 
 function create(message) {
   if (!message.username) message.username = 'Anonymous';
-  console.log(message)
   const result = schema.validate(message);
   if (result.error == null) {
     message.created = new Date();
     return messages.insert(message);
   } else {
-    console.log(result.error)
     return Promise.reject(result.error);
   }
 }
